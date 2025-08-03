@@ -107,7 +107,7 @@ export default function QRCheckInPage() {
     try {
       console.log('Refreshing duty data for mobile:', mobileNumber);
       const response = await fetch(
-        `http://localhost:3000/duty/check-mobile/${mobileNumber}`
+        `https://projectdemobackend-production.up.railway.app/duty/check-mobile/${mobileNumber}`
       );
       if (response.ok) {
         const result = await response.json();
@@ -144,7 +144,7 @@ export default function QRCheckInPage() {
     try {
       // First check if mobile number already exists in today's duty
       const checkResponse = await fetch(
-        `http://localhost:3000/duty/check-mobile/${mobileNumber}`
+        `https://projectdemobackend-production.up.railway.app/duty/check-mobile/${mobileNumber}`
       );
 
       if (!checkResponse.ok) {
@@ -186,7 +186,7 @@ export default function QRCheckInPage() {
 
       // Mobile number doesn't exist - get staff info and proceed with reporting
       const staffResponse = await fetch(
-        `http://localhost:3000/staff/by-mobile/${mobileNumber}`
+        `https://projectdemobackend-production.up.railway.app/staff/by-mobile/${mobileNumber}`
       );
 
       if (!staffResponse.ok) {
@@ -228,7 +228,7 @@ export default function QRCheckInPage() {
       // Report for duty - just send mobile number
       try {
         const reportResponse = await fetch(
-          'http://localhost:3000/duty/report',
+          'https://projectdemobackend-production.up.railway.app/duty/report',
           {
             method: 'POST',
             headers: {
@@ -296,7 +296,7 @@ export default function QRCheckInPage() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/duty/submit', {
+      const response = await fetch('https://projectdemobackend-production.up.railway.app/duty/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -344,7 +344,7 @@ export default function QRCheckInPage() {
     try {
       // First verify the proxy staff
       const proxyResponse = await fetch(
-        `http://localhost:3000/staff/by-mobile/${mobileNumber}`
+        `https://projectdemobackend-production.up.railway.app/staff/by-mobile/${mobileNumber}`
       );
 
       if (!proxyResponse.ok) {
@@ -362,7 +362,7 @@ export default function QRCheckInPage() {
 
       // Verify the absent staff
       const absentResponse = await fetch(
-        `http://localhost:3000/staff/by-mobile/${absentTeacherMobile}`
+        `https://projectdemobackend-production.up.railway.app/staff/by-mobile/${absentTeacherMobile}`
       );
 
       if (!absentResponse.ok) {
@@ -380,7 +380,7 @@ export default function QRCheckInPage() {
       setAbsentTeacher(absent);
 
       // Get today's duty for absent teacher
-      const dutyResponse = await fetch('http://localhost:3000/duty/today');
+      const dutyResponse = await fetch('https://projectdemobackend-production.up.railway.app/duty/today');
       if (dutyResponse.ok) {
         const dutyData = await dutyResponse.json();
         const duty = dutyData.find(
@@ -391,7 +391,7 @@ export default function QRCheckInPage() {
 
       // Process proxy check-in
       const proxyCheckInResponse = await fetch(
-        'http://localhost:3000/duty/proxy',
+        'https://projectdemobackend-production.up.railway.app/duty/proxy',
         {
           method: 'POST',
           headers: {
