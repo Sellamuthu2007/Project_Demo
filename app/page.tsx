@@ -64,7 +64,7 @@ export default function QRCheckInPage() {
   useEffect(() => {
     const fetchTodayDuty = async () => {
       try {
-        const response = await fetch('http://localhost:3000/duty/today');
+       const response = await fetch('https://projectdemobackend-production.up.railway.app/duty/today');
         if (response.ok) {
           const data = await response.json();
           if (data && data.length > 0) {
